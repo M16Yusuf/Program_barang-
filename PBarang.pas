@@ -1,5 +1,10 @@
 program PBarang;
-uses crt
+uses crt;
 
+type
+    
+var 
+    array
 begin
+
 end.
