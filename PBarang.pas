@@ -3,7 +3,7 @@ uses crt;
 
 const 
     maks=100;
-    namaFile = 'dataBar.dat';
+    namaFile ='dataBar.dat';
 
 type
     TBarang = record 
@@ -20,7 +20,21 @@ var
     pilihan_menu : integer;
 
 begin
-    writeln('apa aja weeh');
-    writeln('apa ajaa weeeh');
-    writeln('aapaa atuuh');    
+    banyakdata:=0;
+    //bacaFile;
+    writeln('Selamat datang di aplikasi penyimpan data');
+    writeln('1. Lihat data');
+    writeln('2. Tambah data');
+    writeln('3. Ubah data');
+    writeln('4. Hapus data');
+    writeln('5. Pengurutan data');
+    writeln('6. Pencarian data');
+    writeln('7. Filter Data');
+    writeln('0. Keluar');
+    writeln('------------------------------------------');
+    write('Pilhan anda : ');readln('pilihan_menu');
+    if pilihan_menu = 1 then
+         Lihat_data;
+    else
+    //simpanFile;    
 end.
