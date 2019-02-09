@@ -12,7 +12,7 @@ type
         harga : real;
         subtotal: real;
         Qty : integer;
-
+ 
 
 var
     surat : array[1..maks] of TBarang;
