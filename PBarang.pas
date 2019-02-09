@@ -19,6 +19,48 @@ var
     banyakdata :integer;
     pilihan_menu : integer;
 
+procedure Lihat_data; //Procedure ini digunakan untuk menampilkan data tersimpan
+    var
+            i : integer;
+        begin
+            if (banyakdata>0) then
+            begin
+                clrscr;
+                    //   000000000111111111122222222223333333333444444444455555555556666666666
+                    //   123456789012345678901234567890123456789012345678901234567890123456789
+                writeln('--------------------------------------------------------------------');
+                writeln('| NO |  NO SURAT  |      PERIHAL     |  JENIS SURAT  |  PENGIRIM   |');
+                writeln('--------------------------------------------------------------------');
+                for i:= 1 to banyakdata do
+                begin
+                    gotoxy(2, i+3);write(i);
+                    gotoxy(8, i+3);write(surat[i].no_surat);
+                    gotoxy(21, i+3);write(surat[i].perihal);
+                    gotoxy(40, i+3);write(surat[i].jenis_surat);
+                    gotoxy(56, i+3);write(surat[i].pengirim);
+                end;
+                writeln();
+                write('Tekan enter untuk melanjutkan.');
+            end
+            else
+                writeln('Data pengarsipan surat masuk belum diisi.');
+            readln();
+        end;
+
+
+//procedure tambah_data;
+
+//procedure ubah_data;
+
+//procedure hapus_data;
+
+//procedure pengurutan;
+
+//procedure pencarian;
+
+//procedure filter;
+
+
 begin
     banyakdata:=0;
     //bacaFile;
@@ -36,5 +78,15 @@ begin
     if pilihan_menu = 1 then
          Lihat_data;
     else
+    if pilihan_menu = 2 then
+        tambah_data;
+    else
+    if pilihan_menu = 3 then
+        ubah_data;
+    else 
+    if pilihan_menu = 4 then
+        Hapus_data;
+    else
+    if 
     //simpanFile;    
 end.
