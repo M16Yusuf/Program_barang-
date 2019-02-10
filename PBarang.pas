@@ -52,25 +52,32 @@ procedure Lihat_data;
     var
         i:integer;
     begin
-        clrscr;
-    //            000000000111111111122222222223333333333444444444455555555556
-    //            123456789012345678901234567890123456789012345678901234567890
-    //            |-12345--|-12345678901234567890-|-123456-|-123-|-123456789-|
-    //            |  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |
-        writeln ('|  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |');
-        writeln ('------------------------------------------------------------');
-
-        for i:=1 to banyakdata do
-        begin
-                gotoxy(1,i+3);write('|        |                      |        |     |           |');
-                gotoxy(3,i+3);write(barang[i].kode);
-                gotoxy(12,i+3);write(barang[i].nama);
-                gotoxy(35,i+3);write(barang[i].harga:6);
-                gotoxy(44,i+3);write(barang[i].Qty:3);
-                gotoxy(50,i+3);writeln(barang[i].subtotal:9);
-        end;
-        writeln ('------------------------------------------------------------');
-        readln;
+        if (banyakdata>=0) then  
+            begin
+                clrscr;  
+            //            000000000111111111122222222223333333333444444444455555555556
+            //            123456789012345678901234567890123456789012345678901234567890
+            //            |-12345--|-12345678901234567890-|-123456-|-123-|-123456789-|
+            //            |  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |
+                writeln ('|  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |');
+                writeln ('------------------------------------------------------------');
+                for i:= 1 to banyakdata do
+                begin
+                        gotoxy(1,i+3);write('|        |                      |        |     |           |');
+                        gotoxy(3,i+3);write(barang[i].kode);
+                        gotoxy(12,i+3);write(barang[i].nama);
+                        gotoxy(35,i+3);write(barang[i].harga);
+                        gotoxy(44,i+3);write(barang[i].Qty);
+                        gotoxy(50,i+3);writeln(barang[i].subtotal);
+                end;
+                writeln ('------------------------------------------------------------');
+                write('Tekan enter untuk melanjutkan');readln();
+            end
+        else
+            begin
+                writeln('Data barang belum terisi');
+            end;
+            readln;
     end;
 
 procedure tambah_data;
