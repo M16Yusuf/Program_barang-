@@ -34,7 +34,6 @@ procedure bacaFile;
                     end;
                 close(f);
             end;
-        writeln('File tidak ditemukan');
     end;
 
 procedure simpanFile(); 
@@ -75,24 +74,42 @@ procedure Lihat_data;
     end;
 
 procedure tambah_data;
-  begin
-       if banyakdata<maks then
-       begin
-            banyakdata:=banyakdata+1;
-            writeln('Inputkan barang ke-',banyakdata);
-            write('kode barang : ');readln(barang[banyakdata].kode);
-            write('Nama barang : ');readln(barang[banyakdata].nama);
-            write('Harga : ');readln(barang[banyakdata].harga);
-            write('Qty   : ');readln(barang[banyakdata].Qty);
-            barang[banyakdata].subtotal:=barang[banyakdata].harga * barang[banyakdata].Qty;
-       end
-       else begin
+    begin
+        if banyakdata<maks then
+            begin
+                    banyakdata:=banyakdata+1;
+                    writeln('Inputkan barang ke-',banyakdata);
+                    write('kode barang : ');readln(barang[banyakdata].kode);
+                    write('Nama barang : ');readln(barang[banyakdata].nama);
+                    write('Harga : ');readln(barang[banyakdata].harga);
+                    write('Qty   : ');readln(barang[banyakdata].Qty);
+                    barang[banyakdata].subtotal:=barang[banyakdata].harga * barang[banyakdata].Qty;
+            end
+        else
+            begin
             writeln ('Banyak data sudah mencapai batas maksimal');
             end;
-  end;
+    end;
 
+procedure ubah_data;
+    var 
+        i:integer;
+    begin
+        clrscr;
+        if banyakdata >= 1 then
+            begin
+                write('Data Nomor Berapa Yang Ingin Diubah : ');readln(i);
+                write('Kode barang   : ');readln(barang[i].kode);
+                write('nama barang   : ');readln(barang[i].nama);
+                write('Jumlah barang : ');readln(barang[i].Qty);
+                write('Harga Barang  : ');readln(barang[i].harga);
+                write('Data  Berhasil Diubah');
+                readln();
+            end
+        else
+            write('Data Kosong');readln;  
+    end;
 
-//procedure ubah_data;
 
 //procedure hapus_data;
 
@@ -106,6 +123,7 @@ procedure tambah_data;
 begin
     banyakdata:=0;
     repeat
+        clrscr;
         bacaFile;
         writeln('Selamat datang di aplikasi penyimpan data');
         writeln('1. Lihat data');
@@ -126,18 +144,18 @@ begin
         else
         if pilihan_menu = 3 then
             ubah_data
-        else 
-        if pilihan_menu = 4 then
-            Hapus_data
-        else
-        if pilihan_menu = 5 then
-            pengurutan
-        else 
-        if pilihan_menu = 6 then
-            pencarian
-        else
-        if pilihan_menu = 7 then
-            filter
+//        else 
+//        if pilihan_menu = 4 then
+//            Hapus_data
+//        else
+//        if pilihan_menu = 5 then
+//            pengurutan
+//       else 
+//        if pilihan_menu = 6 then
+//            pencarian
+//        else
+//       if pilihan_menu = 7 then
+//          filter
     until pilihan_menu = 0;
     simpanFile;    
 end.
