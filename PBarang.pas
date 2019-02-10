@@ -6,11 +6,11 @@ const
     namaFile ='dataBar.dat';
 
 type
-    Tbarang=record
+    TBarang=record
                   kode:string[5];
                   nama:string[20];
                   harga:integer;
-                  qty:integer;
+                  Qty:integer;
                   subtotal:integer;
              end;
  
@@ -66,9 +66,9 @@ procedure Lihat_data;
                         gotoxy(1,i+3);write('|        |                      |        |     |           |');
                         gotoxy(3,i+3);write(barang[i].kode);
                         gotoxy(12,i+3);write(barang[i].nama);
-                        gotoxy(35,i+3);write(barang[i].harga);
-                        gotoxy(44,i+3);write(barang[i].Qty);
-                        gotoxy(50,i+3);writeln(barang[i].subtotal);
+                        gotoxy(34,i+3);write(barang[i].harga:6);
+                        gotoxy(44,i+3);write(barang[i].Qty:3);
+                        gotoxy(50,i+3);writeln(barang[i].subtotal:9);
                 end;
                 writeln ('------------------------------------------------------------');
                 write('Tekan enter untuk melanjutkan');readln();
@@ -77,7 +77,6 @@ procedure Lihat_data;
             begin
                 writeln('Data barang belum terisi');
             end;
-            readln;
     end;
 
 procedure tambah_data;
@@ -94,7 +93,7 @@ procedure tambah_data;
             end
         else
             begin
-            writeln ('Banyak data sudah mencapai batas maksimal');
+                writeln ('Banyak data sudah mencapai batas maksimal');
             end;
     end;
 
@@ -129,9 +128,9 @@ procedure ubah_data;
 
 begin
     banyakdata:=0;
+    bacafile;
     repeat
         clrscr;
-        bacaFile;
         writeln('Selamat datang di aplikasi penyimpan data');
         writeln('1. Lihat data');
         writeln('2. Tambah data');
