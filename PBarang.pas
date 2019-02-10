@@ -117,7 +117,56 @@ procedure ubah_data;
     end;
 
 
-//procedure hapus_data;
+procedure hapus_data; 
+    var
+        i : integer;
+        yakin : string;
+        temp : TBarang;
+    begin 
+        clrscr;
+        if (banyakdata <> 0) then 
+        begin
+            write('Data di posisi berapa yang mau Anda hapus? (1 - ', banyakdata, ')');
+            readln(i);
+            write('Apakah anda yakin? [Y/T]');
+            readln(yakin);
+            if (yakin = 'y') or (yakin = 'Y') then
+            begin 
+                barang[i].kode := '';
+                barang[i].nama := '';
+                barang[i].harga := '';
+                barang[i].Qty := '';
+                
+
+                while(barang[i+1].kode <> '') do
+                begin
+                    temp := barang[i];
+                    barang[i] := barang[i+1];
+                    barang[i+1] := temp;
+                    i := i + 1;
+                end;
+
+                banyakdata := banyakdata - 1;
+
+                writeln();
+                writeln('Data berhasil dihapus!');
+                write('Tekan enter untuk melanjutkan');
+                readln;
+            end
+            else
+            begin
+                writeln();
+                writeln('Penghapusan dibatalkan!');
+                write('Tekan enter untuk melanjutkan');
+                readln;
+            end;
+        end
+        else
+        begin
+            writeln('Data kosong');readln;
+        end;
+    end;
+
 
 //procedure pengurutan;
 
@@ -150,9 +199,9 @@ begin
         else
         if pilihan_menu = 3 then
             ubah_data
-//        else 
-//        if pilihan_menu = 4 then
-//            Hapus_data
+        else 
+        if pilihan_menu = 4 then
+            Hapus_data
 //        else
 //        if pilihan_menu = 5 then
 //            pengurutan
