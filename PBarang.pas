@@ -14,7 +14,6 @@ type
                   subtotal:integer;
              end;
  
-
 var
     barang : array[1..maks] of TBarang;
     banyakdata :integer;
@@ -50,7 +49,6 @@ procedure simpanFile();
         close(f);
     end;
 
-
 procedure Lihat_data;
     var
         i:integer;
@@ -60,8 +58,8 @@ procedure Lihat_data;
     //            123456789012345678901234567890123456789012345678901234567890
     //            |-12345--|-12345678901234567890-|-123456-|-123-|-123456789-|
     //            |  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |
-        writeln('|  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |');
-        writeln('------------------------------------------------------------');
+        writeln ('|  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |');
+        writeln ('------------------------------------------------------------');
 
         for i:=1 to banyakdata do
         begin
@@ -72,12 +70,27 @@ procedure Lihat_data;
                 gotoxy(44,i+3);write(barang[i].Qty:3);
                 gotoxy(50,i+3);writeln(barang[i].subtotal:9);
         end;
-        writeln('------------------------------------------------------------');
+        writeln ('------------------------------------------------------------');
         readln;
     end;
 
+procedure tambah_data;
+  begin
+       if banyakdata<maks then
+       begin
+            banyakdata:=banyakdata+1;
+            writeln('Inputkan barang ke-',banyakdata);
+            write('kode barang : ');readln(barang[banyakdata].kode);
+            write('Nama barang : ');readln(barang[banyakdata].nama);
+            write('Harga : ');readln(barang[banyakdata].harga);
+            write('Qty   : ');readln(barang[banyakdata].Qty);
+            barang[banyakdata].subtotal:=barang[banyakdata].harga * barang[banyakdata].Qty;
+       end
+       else begin
+            writeln ('Banyak data sudah mencapai batas maksimal');
+            end;
+  end;
 
-//procedure tambah_data;
 
 //procedure ubah_data;
 
@@ -92,30 +105,39 @@ procedure Lihat_data;
 
 begin
     banyakdata:=0;
-    //bacaFile;
-    writeln('Selamat datang di aplikasi penyimpan data');
-    writeln('1. Lihat data');
-    writeln('2. Tambah data');
-    writeln('3. Ubah data');
-    writeln('4. Hapus data');
-    writeln('5. Pengurutan data');
-    writeln('6. Pencarian data');
-    writeln('7. Filter Data');
-    writeln('0. Keluar');
-    writeln('------------------------------------------');
-    write('Pilhan anda : ');readln(pilihan_menu);
-    if pilihan_menu = 1 then
-         Lihat_data
-    else
-    if pilihan_menu = 2 then
-        tambah_data
-    else
-    if pilihan_menu = 3 then
-        ubah_data
-    else 
-    if pilihan_menu = 4 then
-        Hapus_data
-    else
-    if 
-    //simpanFile;    
+    repeat
+        bacaFile;
+        writeln('Selamat datang di aplikasi penyimpan data');
+        writeln('1. Lihat data');
+        writeln('2. Tambah data');
+        writeln('3. Ubah data');
+        writeln('4. Hapus data');
+        writeln('5. Pengurutan data');
+        writeln('6. Pencarian data');
+        writeln('7. Filter Data');
+        writeln('0. Keluar');
+        writeln('------------------------------------------');
+        write('Pilhan anda : ');readln(pilihan_menu);
+        if pilihan_menu = 1 then
+            Lihat_data
+        else
+        if pilihan_menu = 2 then
+            tambah_data
+        else
+        if pilihan_menu = 3 then
+            ubah_data
+        else 
+        if pilihan_menu = 4 then
+            Hapus_data
+        else
+        if pilihan_menu = 5 then
+            pengurutan
+        else 
+        if pilihan_menu = 6 then
+            pencarian
+        else
+        if pilihan_menu = 7 then
+            filter
+    until pilihan_menu = 0;
+    simpanFile;    
 end.
