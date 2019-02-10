@@ -1,51 +1,80 @@
 program PBarang;
-uses crt;
+uses crt, sysutils;
 
 const 
     maks=100;
     namaFile ='dataBar.dat';
 
 type
-    TBarang = record 
-        Kode_barang : string;
-        nama_barang : string;
-        harga : real;
-        subtotal: real;
-        Qty : integer;
+    Tbarang=record
+                  kode:string[5];
+                  nama:string[20];
+                  harga:integer;
+                  qty:integer;
+                  subtotal:integer;
+             end;
  
 
 var
-    surat : array[1..maks] of TBarang;
+    barang : array[1..maks] of TBarang;
     banyakdata :integer;
     pilihan_menu : integer;
 
-procedure Lihat_data; //Procedure ini digunakan untuk menampilkan data tersimpan
+procedure bacaFile;  
     var
-            i : integer;
-        begin
-            if (banyakdata>0) then
+        f:file of TBarang;
+    begin
+        if FileExists(namafile) then 
             begin
-                clrscr;
-                    //   000000000111111111122222222223333333333444444444455555555556666666666
-                    //   123456789012345678901234567890123456789012345678901234567890123456789
-                writeln('--------------------------------------------------------------------');
-                writeln('| NO |  NO SURAT  |      PERIHAL     |  JENIS SURAT  |  PENGIRIM   |');
-                writeln('--------------------------------------------------------------------');
-                for i:= 1 to banyakdata do
-                begin
-                    gotoxy(2, i+3);write(i);
-                    gotoxy(8, i+3);write(surat[i].no_surat);
-                    gotoxy(21, i+3);write(surat[i].perihal);
-                    gotoxy(40, i+3);write(surat[i].jenis_surat);
-                    gotoxy(56, i+3);write(surat[i].pengirim);
-                end;
-                writeln();
-                write('Tekan enter untuk melanjutkan.');
-            end
-            else
-                writeln('Data pengarsipan surat masuk belum diisi.');
-            readln();
+                assign(f,namafile);
+                reset(f);
+                while not eof(f) do 
+                    begin
+                        banyakdata:=banyakdata+1;
+                        read(f,barang[banyakdata]);
+                    end;
+                close(f);
+            end;
+        writeln('File tidak ditemukan');
+    end;
+
+procedure simpanFile(); 
+    var
+        f:file of TBarang;
+        i:integer;
+    begin
+        assign(f,namafile);
+        rewrite(f);
+        for i:=1 to banyakdata do
+            write(f,barang[i]);
+        close(f);
+    end;
+
+
+procedure Lihat_data;
+    var
+        i:integer;
+    begin
+        clrscr;
+    //            000000000111111111122222222223333333333444444444455555555556
+    //            123456789012345678901234567890123456789012345678901234567890
+    //            |-12345--|-12345678901234567890-|-123456-|-123-|-123456789-|
+    //            |  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |
+        writeln('|  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |');
+        writeln('------------------------------------------------------------');
+
+        for i:=1 to banyakdata do
+        begin
+                gotoxy(1,i+3);write('|        |                      |        |     |           |');
+                gotoxy(3,i+3);write(barang[i].kode);
+                gotoxy(12,i+3);write(barang[i].nama);
+                gotoxy(35,i+3);write(barang[i].harga:6);
+                gotoxy(44,i+3);write(barang[i].Qty:3);
+                gotoxy(50,i+3);writeln(barang[i].subtotal:9);
         end;
+        writeln('------------------------------------------------------------');
+        readln;
+    end;
 
 
 //procedure tambah_data;
@@ -74,18 +103,18 @@ begin
     writeln('7. Filter Data');
     writeln('0. Keluar');
     writeln('------------------------------------------');
-    write('Pilhan anda : ');readln('pilihan_menu');
+    write('Pilhan anda : ');readln(pilihan_menu);
     if pilihan_menu = 1 then
-         Lihat_data;
+         Lihat_data
     else
     if pilihan_menu = 2 then
-        tambah_data;
+        tambah_data
     else
     if pilihan_menu = 3 then
-        ubah_data;
+        ubah_data
     else 
     if pilihan_menu = 4 then
-        Hapus_data;
+        Hapus_data
     else
     if 
     //simpanFile;    
