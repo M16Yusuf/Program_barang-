@@ -134,9 +134,9 @@ procedure hapus_data;
             begin 
                 barang[i].kode := '';
                 barang[i].nama := '';
-                barang[i].harga := '';
-                barang[i].Qty := '';
-                
+                barang[i].harga := 0;
+                barang[i].Qty := 0;
+                barang[i].subtotal :=0;
 
                 while(barang[i+1].kode <> '') do
                 begin
@@ -185,9 +185,9 @@ begin
         writeln('2. Tambah data');
         writeln('3. Ubah data');
         writeln('4. Hapus data');
-        writeln('5. Pengurutan data');
-        writeln('6. Pencarian data');
-        writeln('7. Filter Data');
+//        writeln('5. Pengurutan data');
+//        writeln('6. Pencarian data');
+//        writeln('7. Filter Data');
         writeln('0. Keluar');
         writeln('------------------------------------------');
         write('Pilhan anda : ');readln(pilihan_menu);
