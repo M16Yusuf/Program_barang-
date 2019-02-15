@@ -1,5 +1,5 @@
 program PBarang;
-uses crt, sysutils;
+uses crt, sysutils, strutils;
 
 const 
     maks=100;
@@ -59,6 +59,7 @@ procedure Lihat_data;
             //            123456789012345678901234567890123456789012345678901234567890
             //            |-12345--|-12345678901234567890-|-123456-|-123-|-123456789-|
             //            |  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |
+                writeln ('------------------------------------------------------------');
                 writeln ('|  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |');
                 writeln ('------------------------------------------------------------');
                 for i:= 1 to banyakdata do
@@ -167,12 +168,38 @@ procedure hapus_data;
         end;
     end;
 
-
 //procedure pengurutan;
+
 
 //procedure pencarian;
 
-//procedure filter;
+procedure filter_nama;
+    var 
+        i, num : integer;
+        filter : string[20];
+    begin
+        clrscr;
+        write('Masukan nama barang yang akan di filter : ');readln(filter);
+        writeln ('|  KODE  |     NAMA BARANG      |  HARGA | Qty | SUB TOTAL |');
+        writeln ('------------------------------------------------------------');
+        num := 1;
+        for i:=1 to banyakdata do 
+            begin
+                if pos(filter, barang[i].nama) > 0 then 
+                begin
+                    gotoxy(1,num+3);write('|        |                      |        |     |           |');
+                    gotoxy(3,num+3);write(barang[i].kode);
+                    gotoxy(12,num+3);write(barang[i].nama);
+                    gotoxy(34,num+3);write(barang[i].harga:6);
+                    gotoxy(44,num+3);write(barang[i].Qty:3);
+                    gotoxy(50,num+3);writeln(barang[i].subtotal:9);
+                    num:=num+1;
+                end;
+            end; 
+        writeln;
+        write('Tekan untuk melanjutkan.');
+        readln;
+    end;
 
 
 begin
@@ -187,7 +214,7 @@ begin
         writeln('4. Hapus data');
 //        writeln('5. Pengurutan data');
 //        writeln('6. Pencarian data');
-//        writeln('7. Filter Data');
+        writeln('7. Filter Data');
         writeln('0. Keluar');
         writeln('------------------------------------------');
         write('Pilhan anda : ');readln(pilihan_menu);
@@ -208,9 +235,9 @@ begin
 //       else 
 //        if pilihan_menu = 6 then
 //            pencarian
-//        else
-//       if pilihan_menu = 7 then
-//          filter
+        else
+        if pilihan_menu = 7 then
+            filter_nama
     until pilihan_menu = 0;
     simpanFile;    
 end.
