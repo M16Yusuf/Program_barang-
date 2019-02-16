@@ -48,6 +48,24 @@ procedure simpanFile();
         close(f);
     end;
 
+procedure tambah_data;
+    begin
+        if banyakdata<maks then
+            begin
+                    banyakdata:=banyakdata+1;
+                    writeln('Inputkan barang ke-',banyakdata);
+                    write('kode barang : ');readln(barang[banyakdata].kode);
+                    write('Nama barang : ');readln(barang[banyakdata].nama);
+                    write('Harga : ');readln(barang[banyakdata].harga);
+                    write('Qty   : ');readln(barang[banyakdata].Qty);
+                    barang[banyakdata].subtotal:=barang[banyakdata].harga * barang[banyakdata].Qty;
+            end
+        else
+            begin
+                writeln ('Banyak data sudah mencapai batas maksimal');
+            end;
+    end;
+
 procedure Lihat_data;
     var
         i:integer;
@@ -67,9 +85,9 @@ procedure Lihat_data;
                         gotoxy(1,i+3);write('|        |                      |        |     |           |');
                         gotoxy(3,i+3);write(barang[i].kode);
                         gotoxy(12,i+3);write(barang[i].nama);
-                        gotoxy(34,i+3);write(barang[i].harga:6);
-                        gotoxy(44,i+3);write(barang[i].Qty:3);
-                        gotoxy(50,i+3);writeln(barang[i].subtotal:9);
+                        gotoxy(34,i+3);write(barang[i].harga);
+                        gotoxy(44,i+3);write(barang[i].Qty);
+                        gotoxy(50,i+3);writeln(barang[i].subtotal);
                 end;
                 writeln ('------------------------------------------------------------');
                 write('Tekan enter untuk melanjutkan');readln();
@@ -77,24 +95,6 @@ procedure Lihat_data;
         else
             begin
                 writeln('Data barang belum terisi');
-            end;
-    end;
-
-procedure tambah_data;
-    begin
-        if banyakdata<maks then
-            begin
-                    banyakdata:=banyakdata+1;
-                    writeln('Inputkan barang ke-',banyakdata);
-                    write('kode barang : ');readln(barang[banyakdata].kode);
-                    write('Nama barang : ');readln(barang[banyakdata].nama);
-                    write('Harga : ');readln(barang[banyakdata].harga);
-                    write('Qty   : ');readln(barang[banyakdata].Qty);
-                    barang[banyakdata].subtotal:=barang[banyakdata].harga * barang[banyakdata].Qty;
-            end
-        else
-            begin
-                writeln ('Banyak data sudah mencapai batas maksimal');
             end;
     end;
 
@@ -168,7 +168,64 @@ procedure hapus_data;
         end;
     end;
 
-//procedure pengurutan;
+procedure pengurutan_nama;// pengurutan ini menggunakan metode Bubble short Ascending (dari terkecil ke trbesar)
+    var
+        tahap,i: integer;
+        temp:TBarang;
+    begin 
+        for tahap := 1 to banyakdata -1 do 
+        begin
+            for i:=banyakdata downto 2 do
+            begin 
+                if barang[i].nama < barang[i-1].nama then 
+                begin
+                    temp:=barang[i];
+                    barang[i]:=barang[i-1];
+                    barang[i-1]:=temp;
+                end;
+            end;
+        end;
+        writeln('Pengerutan berdasarkan nama(asc) selesai');readln;
+    end;
+    
+procedure pengurutan_harga;// pengurutan ini menggunakan metode Bubble short Ascending (dari terkecil ke trbesar)
+    var
+        tahap,i: integer;
+        temp:TBarang;
+    begin 
+        for tahap := 1 to banyakdata -1 do 
+        begin
+            for i:=banyakdata downto 2 do
+            begin 
+                if barang[i].harga < barang[i-1].harga then 
+                begin
+                    temp:=barang[i];
+                    barang[i]:=barang[i-1];
+                    barang[i-1]:=temp;
+                end;
+            end;
+        end;
+        writeln('Pengerutan berdasarkan harga(asc) selesai');readln;
+    end;
+
+procedure pengurutan_menu;
+    var
+        pilrut:integer;
+    begin
+        clrscr;
+        writeln('Pengurutan berdasarkan : ');
+        writeln('1. Berdasarkan Nama ');
+        writeln('2. Berdasarkan Harga ');
+        writeln('0. Kembali');
+        writeln('------------------------------------------');
+        write('Pilihan anda : ');read(pilrut);
+        case pilrut of 
+            1:pengurutan_nama;
+            2:pengurutan_harga;
+            0:;
+            else writeln('Pilhan tidak ditemukan');readln;
+        end;
+    end;
 
 
 //procedure pencarian;
@@ -212,7 +269,7 @@ begin
         writeln('2. Tambah data');
         writeln('3. Ubah data');
         writeln('4. Hapus data');
-//        writeln('5. Pengurutan data');
+        writeln('5. Pengurutan data');
 //        writeln('6. Pencarian data');
         writeln('7. Filter Data');
         writeln('0. Keluar');
@@ -229,9 +286,9 @@ begin
         else 
         if pilihan_menu = 4 then
             Hapus_data
-//        else
-//        if pilihan_menu = 5 then
-//            pengurutan
+        else
+        if pilihan_menu = 5 then
+            pengurutan_menu
 //       else 
 //        if pilihan_menu = 6 then
 //            pencarian
