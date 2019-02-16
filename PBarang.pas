@@ -85,9 +85,9 @@ procedure Lihat_data;
                         gotoxy(1,i+3);write('|        |                      |        |     |           |');
                         gotoxy(3,i+3);write(barang[i].kode);
                         gotoxy(12,i+3);write(barang[i].nama);
-                        gotoxy(34,i+3);write(barang[i].harga);
-                        gotoxy(44,i+3);write(barang[i].Qty);
-                        gotoxy(50,i+3);writeln(barang[i].subtotal);
+                        gotoxy(34,i+3);write(barang[i].harga:6);
+                        gotoxy(44,i+3);write(barang[i].Qty:3);
+                        gotoxy(50,i+3);writeln(barang[i].subtotal:9);
                 end;
                 writeln ('------------------------------------------------------------');
                 write('Tekan enter untuk melanjutkan');readln();
@@ -114,7 +114,10 @@ procedure ubah_data;
                 readln();
             end
         else
-            write('Data Kosong');readln;  
+            begin
+                write('Data Kosong');
+                readln;  
+            end;
     end;
 
 
