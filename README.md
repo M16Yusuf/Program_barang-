@@ -9,17 +9,17 @@ dalam menjual dagangan mereka dan mempermudah menyimpan data harga
 setiap barang yang dijual.
 
 > Materi Algoritma didalamnya 
->  *tipe data
->  *Struktur Runtunan 
->  *Struktur Peilihan
->  *Struktur Pengulangan
->  *Struktur Prosedur
->  *Struktur Function 
->  *Array 
->  *Array 2 Dimensi &  Dimensi banyak 
->  *Record 
->  *Sorting 
->  *Searching
+>  * tipe data
+>  * Struktur Runtunan 
+>  * Struktur Peilihan
+>  * Struktur Pengulangan
+>  * Struktur Prosedur
+>  * Struktur Function 
+>  * Array 
+>  * Array 2 Dimensi &  Dimensi banyak 
+>  * Record 
+>  * Sorting 
+>  * Searching
 
 </pre>
 
