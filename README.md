@@ -7,7 +7,7 @@ bahasa pemograman pascal. Program ini di buat untuk memasukan
 data Barang yang mau dijual, tujuannya untuk mempermudah pedagang 
 dalam menjual dagangan mereka dan mempermudah menyimpan data harga 
 setiap barang yang dijual.
-</pre>
+
 > Materi Algoritma didalamnya 
 >  * tipe data
 >  * Struktur Runtunan 
@@ -21,7 +21,7 @@ setiap barang yang dijual.
 >  * Sorting 
 >  * Searching
 
-
+</pre>
 
 
 
